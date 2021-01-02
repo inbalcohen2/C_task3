@@ -7,7 +7,7 @@ int getlines(char s[]){
         if(!flag){
     int c, i;
     int j = 0;
-    for (int i = 0; (c = getchar()) != EOF && c != '\n' ; ++i){
+    for (int i = 0; (c = getchar()) != EOF && c != '\n' && c != '\r' ; ++i){
         if (i < LINE){
                  s[j++] = c;
         }
@@ -32,7 +32,7 @@ int getword(char w[]){
         if(!flag){
     int c, i;
     int j = 0;
-    for (int i = 0; (c = getchar()) != EOF && c != '\n' && c != '\t' && c != ' '; ++i)  {
+    for (int i = 0; (c = getchar()) != EOF && c != '\n' && c != '\t' && c != ' ' && c != '\r' ; ++i)  {
         if (i < WORD){
                  w[j++] = c;
         } 
@@ -44,7 +44,10 @@ int getword(char w[]){
      if (c == EOF){
                         flag =1;
                }
-                flag =0;
+               else{
+                  flag =0;     
+               }
+                
                 return i;
         }
         else
@@ -155,10 +158,12 @@ int similar(char *s, char *t, int n){
  **/
 void print_similar_words(char *str){
         char s_word[WORD];
-        while(getword(s_word)!=-1) {
+        while(getword(s_word) !=-1) {
                 if(similar(str,s_word,1) || similar(str,s_word,0)) {
                        printf("%s\n",s_word);     
                 }
         }
+                            
+
 }
 
